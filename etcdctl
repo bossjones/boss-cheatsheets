@@ -1,0 +1,3 @@
+# etcdctl ls
+for i in `etcdctl ls /images --recursive`; do echo "$i --- $(etcdctl get $i)"; done|sort
+
