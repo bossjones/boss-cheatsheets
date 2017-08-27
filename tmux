@@ -51,3 +51,9 @@ Ctrl-b %
 
 # Split windows vertically:
 Ctrl-b "
+
+# view messages
+Ctrl-c ~
+
+# rename window
+Ctrl-c ,

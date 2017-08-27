@@ -16,3 +16,6 @@ ss -t dst 192.168.2.1:80
 
 # show all ssh related connection
 ss -t state established '( dport = :ssh or sport = :ssh )'
+
+# Display listening sockets, tcp and ports. Alternative netstat -nltp
+ss -nltp

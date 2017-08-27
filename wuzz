@@ -1,0 +1,12 @@
+# wuzz - Interactive cli tool for HTTP inspection
+# 
+# Usage: wuzz [-H|--header=HEADER]... [-D|--data=POST_DATA] [-t|--timeout=MSECS] [URL]
+# 
+# Key bindings:
+#   ctrl+r              Send request
+#   ctrl+s              Save response
+#   tab, ctrl+j         Next window
+#   shift+tab, ctrl+k   Previous window
+#   ctrl+h, alt+h       Show history
+#   pageUp              Scroll up the current window
+#   pageDown            Scroll down the current window

@@ -1,0 +1,15 @@
+# Keep your application settings in sync (OS X/Linux)
+# Install Mackup
+# brew install mackup
+
+# Launch it and back up your files
+mackup backup
+
+# Launch it and restore your files
+mackup restore
+
+# Copy back any synced config file to its original place.
+mackup uninstall
+
+# Display the list of applications supported by Mackup.
+mackup list

@@ -1,0 +1,7 @@
+# Small, fast and powerful console music player for Unix-like operating systems.
+brew install cmus --with-ffmpeg --with-jack --with-opusfile
+
+# To have launchd start jack now and restart at login:
+#   brew services start jack
+# Or, if you don't want/need a background service you can just run:
+#   jackd -d coreaudio

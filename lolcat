@@ -1,0 +1,26 @@
+# lolcat
+Usage: lolcat [OPTION]... [FILE]...
+
+Concatenate FILE(s), or standard input, to standard output.
+With no FILE, or when FILE is -, read standard input.
+
+  -p, --spread=<f>      Rainbow spread (default: 3.0)
+  -F, --freq=<f>        Rainbow frequency (default: 0.1)
+  -S, --seed=<i>        Rainbow seed, 0 = random (default: 0)
+  -a, --animate         Enable psychedelics
+  -d, --duration=<i>    Animation duration (default: 12)
+  -s, --speed=<f>       Animation speed (default: 20.0)
+  -i, --invert          Invert fg and bg
+  -t, --truecolor       24-bit (truecolor)
+  -f, --force           Force color even when stdout is not a tty
+  -v, --version         Print version and exit
+  -h, --help            Show this message
+
+Examples:
+  lolcat f - g      Output f's contents, then stdin, then g's contents.
+  lolcat            Copy standard input to standard output.
+  fortune | lolcat  Display a rainbow cookie.
+
+Report lolcat bugs to <https://github.com/busyloop/lolcat/issues>
+lolcat home page: <https://github.com/busyloop/lolcat/>
+Report lolcat translation bugs to <http://speaklolcat.com/>
