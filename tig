@@ -1,0 +1,11 @@
+# Text-mode interface for git
+
+# [tig] show-changes = true
+# [tig "color"] cursor = yellow red bold
+# [tig "bind"] generic = P parent
+
+# git log
+tig
+
+# git commit
+tig status

@@ -1,0 +1,7 @@
+# update database
+freshclam -v
+
+# start process up
+clamd
+
+# guide https://gist.github.com/zhurui1008/4fdc875e557014c3a34e

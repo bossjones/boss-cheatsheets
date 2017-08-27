@@ -1,0 +1,10 @@
+# Below is an example that uses a custom font.
+
+figlet -f "Dancing Font" "Hi"
+
+# Below is a simple example that uses the default options. 
+
+figlet "hello world"
+
+# write in bloody format
+figlet -f "Bloody" "hello mother fucker"

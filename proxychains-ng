@@ -1,0 +1,93 @@
+# source: https://github.com/rofl0r/proxychains-ng
+# 
+# When to use it ?
+# 1) When the only way to get "outside" from your LAN is through proxy server.
+# 2) To get out from behind restrictive firewall which filters outgoing ports.
+# 3) To use two (or more) proxies in chain:
+# 	like: your_host <--> proxy1 <--> proxy2 <--> target_host
+# 4) To "proxify" some program with no proxy support built-in (like telnet)
+# 5) Access intranet from outside via proxy.
+# 6) To use DNS behind proxy.
+# 7) To access hidden tor onion services.
+# 
+# Some cool features:
+# 
+# * This program can mix different proxy types in the same chain
+# 	like: your_host <-->socks5 <--> http <--> socks4 <--> target_host
+# * Different chaining options supported
+# 	random order from the list ( user defined length of chain ).
+# 	exact order  (as they appear in the list )
+# 	dynamic order (smart exclude dead proxies from chain)
+# * You can use it with most TCP client applications, possibly even network
+# 	scanners, as long as they use standard libc functionality.
+# 	pcap based scanning does not work.
+# * You can use it with servers, like squid, sendmail, or whatever.
+# * DNS resolving through proxy.
+# 
+# 
+# Configuration:
+# --------------
+# 
+# proxychains looks for config file in following order:
+# 1)	file listed in environment variable PROXYCHAINS_CONF_FILE or
+# 	provided as a -f argument to proxychains script or binary.
+# 2)	./proxychains.conf
+# 3)	$(HOME)/.proxychains/proxychains.conf
+# 4)	$(sysconfdir)/proxychains.conf  **
+# 
+# ** usually /etc/proxychains.conf
+# 
+# Usage Example:
+# 
+# 	$ proxychains telnet targethost.com
+# 
+# in this example it will run telnet through proxy(or chained proxies)
+# specified by proxychains.conf
+# 
+# Usage Example:
+# 
+# 	$ proxychains -f /etc/proxychains-other.conf telnet targethost2.com
+# 
+# in this example it will use different configuration file then proxychains.conf
+# to connect to targethost2.com host.
+# 
+# Usage Example:
+# 
+# 	$ proxyresolv targethost.com
+# 
+# in this example it will resolve targethost.com through proxy(or chained proxies)
+# specified by proxychains.conf
+# 
+# Known Problems:
+# ---------------
+# - newer versions of nmap try to determine the network interface to use
+#   even if it's not needed (like when doing simple syn scans which use the
+#   standard POSIX socket API. this results in errors when proxychains hands
+#   out an ip address to a reserved address space.
+#   possible workarounds: disable proxy_dns, use a numeric ip, or use nmap's
+#   native support for SOCKS proxies.
+# 
+# - Mac OS X 10.11 (El Capitan) ships with a new security feature called SIP
+#   that prevents hooking of system apps.
+#   workarounds are to partially disable SIP by issuing
+#   csrutil enable --without debug in recovery mode,
+#   or to copy the system binary into the home directory and run it from there.
+#   see github issue #78 for details.
+# 
+# - the glibc dynlinker has a bug or security feature that inhibits dlopen()ed
+#   modules from being subject to the same dlsym hooks as installed for the main
+#   program. this mainly affects scripting languages such as perl or python
+#   that heavily rely on dlopen() for modules written in C to work.
+#   there are unconfirmed reports that it works as root though.
+#   musl libc is unaffected from the bug.
+# 
+# 
+# Community:
+# ----------
+# #proxychains on irc.freenode.net
+# 
+# Donations:
+# ----------
+# bitcoins donations are welcome - please send to this address:
+# 1C9LBpuy56veBqw5N33sZMoZW8mwCw3tPh
+

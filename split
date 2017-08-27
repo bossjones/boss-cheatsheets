@@ -6,3 +6,9 @@ split file.txt -b 10M
 
 # To consolidate split files into a single file:
 cat x* > file.txt
+
+# split a file by number of lines
+split -l 5000 filename
+
+# Split a file whenever it matches a pattern (empty line, here)
+split -p'^$' file_to_split

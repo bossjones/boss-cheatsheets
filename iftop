@@ -1,0 +1,5 @@
+#Monitor the wlan0 device in bytes
+iftop -i wlan0 -B
+
+# Monitor the traffic between your pc and IP 192.168.0.2:80 (Need root permission)
+sudo iftop -BP -f 'host 192.168.0.2 and port 80'

@@ -1,0 +1,25 @@
+# source: http://ranger.nongnu.org/
+# ranger is a console file manager with VI key bindings. It provides a minimalistic and nice curses interface with a view on the directory hierarchy. It ships with "rifle", a file launcher that is good at automatically finding out which program to use for what file type.
+
+# source: https://wiki.archlinux.org/index.php/ranger
+#  ranger - visual file manager
+
+# To copy the default configuration to this directory issue the following command ~/.config/ranger
+ranger --copy-config=all
+
+#  |2.2.3|   hyenatop2 in ~/dev/bossjones/bossjones-dotfiles
+# ± |master ✓| → ranger --copy-config=all
+# creating: /Users/user/.config/ranger/rifle.conf
+# creating: /Users/user/.config/ranger/commands.py
+# creating: /Users/user/.config/ranger/commands_full.py
+# creating: /Users/user/.config/ranger/rc.conf
+# creating: /Users/user/.config/ranger/scope.sh
+#
+# > Please note that configuration files may change as ranger evolves.
+#   It's completely up to you to keep them up to date.
+#
+# > To stop ranger from loading both the default and your custom rc.conf,
+#   please set the environment variable RANGER_LOAD_DEFAULT_RC to FALSE.
+#
+#  |2.2.3|   hyenatop2 in ~/dev/bossjones/bossjones-dotfiles
+# ± |master ✓| →

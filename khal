@@ -1,0 +1,9 @@
+# CLI calendar application https://lostpackets.de/khal/
+
+# install
+mkvirtualenv -ppython3 khal
+STATIC_DEPS=true pip install lxml
+pip install khal
+
+# install brew
+brew install khal

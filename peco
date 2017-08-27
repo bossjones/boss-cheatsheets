@@ -1,0 +1,12 @@
+# peco + git (add, reset, diff, revert code)
+# Put this in your $HOME/.gitconfig
+#
+# [alias]
+#   ad = "!git ls-files --modified --others --exclude-standard | peco --initial-filter=Fuzzy | xargs -r git add --"
+#   df = "!git diff --name-only HEAD | peco --initial-filter=Fuzzy | xargs -r git diff HEAD --"
+#   rs = "!git diff --name-only --cached | peco --initial-filter=Fuzzy | xargs -r git reset -q --"
+#   rb = "!git diff --name-only HEAD | peco --initial-filter=Fuzzy | xargs -I {} -r sh -c 'git reset -q -- {}; git checkout -- {} 2>/dev/null'"
+
+ps aux | peco
+
+ls -lta | peco

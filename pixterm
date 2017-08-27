@@ -1,0 +1,33 @@
+# ○ → pixterm --help
+#    ___  _____  ____
+#   / _ \/  _/ |/_/ /____ ______ _    Made with love by Eliuk Blau
+#  / ___// /_>  </ __/ -_) __/  ' \   github.com/eliukblau/pixterm
+# /_/  /___/_/|_|\__/\__/_/ /_/_/_/   v1.1.1
+#
+# USAGE:
+#
+#   pixterm [options] image (JPEG, PNG, GIF, BMP, TIFF, WebP)
+#
+# OPTIONS:
+#
+#   -credits
+#     	shows some love to contributors <3
+#   -m color
+#     	matte color for image transparency
+# 	(optional, hex format, default: 000000)
+#   -s method
+#     	scale method:
+# 	  0 - resize (default)
+# 	  1 - fill
+# 	  2 - fit
+#   -tc columns
+#     	terminal columns (optional, >=2)
+#   -tr rows
+#     	terminal rows (optional, >=2)
+#   -help
+#	prints this message :D LOL
+
+# Requirements
+#
+# Your terminal emulator must be support true color feature in order to display image colors in a right way. In addition, you must use a monospaced font that includes the lower half block unicode character ▄ (U+2584). I personally recommend Envy Code R. It's the nice font that shows in the screenshots.
+# https://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released

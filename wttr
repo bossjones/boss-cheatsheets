@@ -1,0 +1,28 @@
+# curl wttr.in/Moon
+                      --------.
+                         . .   `--.
+                     O   .       . `-.
+                   @@   .  @@@@@      `-.
+                  @@@@@   @@@@@@@   .    \
+                  @@@@@   @@@@@@@       . \.
+                 @@@@@@.   @@@@@@@   O      \
+                 @@@@o    @@@@@@@@@@     @@@ \
+                       . @@@@@@@@@@@@@ o @@@@|
+                   .      @@@@@@@@@@@@    @@  \	 First Quarter +
+                       o     @@@@@@@@ @@@@    |	 1 10:26:21
+                    o      .  @@   . @@@@@@@  |	 Full Moon -
+                       .-.     @@@   @@@@@@@  |	 5 16:54:49
+                 @     `-'   . @@@@   @@@@  o /
+                 @@ .           @@   .       |
+                 @    /  .  O    .     o   . /
+                  \  /         .    .       /
+                  .-.___   .      .   .-. /'
+                  `-'                `-' /
+                   |     o    O   .   .-'
+                      .       .    .-'
+                        .      .--'
+                      --------'
+
+
+New feature: wttr.in/Rome?lang=it or curl -H "Accept-Language: it" wttr.in/Rome for the localized version. Your lang instead of "it"
+Follow @igor_chubin for wttr.in updates
