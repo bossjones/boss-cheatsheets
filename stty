@@ -1,0 +1,15 @@
+# stty - change and print terminal line settings
+
+# source: https://linux.die.net/man/1/stty
+
+# Reset all terminal settings to "sane" values; this has the effect of "fixing" the terminal when another program alters the terminal settings to an unusable condition.
+stty sane
+
+# Disable echoing of terminal input.
+stty -echo
+
+# Re-enable echoing of terminal input.
+stty echo
+
+# Display all current terminal settings.
+stty -a
