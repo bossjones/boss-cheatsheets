@@ -1,0 +1,8 @@
+# renice - alter priority of running processes
+
+# source: http://man7.org/linux/man-pages/man1/renice.1.html
+# source: http://www.thegeekstuff.com/2013/08/nice-renice-command-examples/?utm_source=tuicool
+
+# The following command would change the priority of the processes with PIDs 987 and 32, plus all processes owned by the users daemon and root:
+renice +1 987 -u daemon root -p 32
+

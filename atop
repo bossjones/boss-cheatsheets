@@ -1,0 +1,28 @@
+# atop - AT Computing's System & Process Monitor
+
+# source: https://linux.die.net/man/1/atop
+
+# To monitor the current system load interactively with an interval of 5 seconds:
+atop 5
+
+# To monitor the system load and write it to a file (in plain ASCII) with an interval of one minute during half an hour with active processes sorted on memory consumption:
+atop -M 60 30 > /log/atop.mem
+
+# Store information about the system- and process activity in binary compressed form to a file with an interval of ten minutes during an hour:
+atop -w /tmp/atop.raw 600 6
+
+# View the contents of this file interactively:
+atop -r /tmp/atop.raw
+
+# View the processor- and disk-utilization of this file in parseable format:
+atop -PCPU,DSK -r /tmp/atop.raw
+
+# View the contents of today's standard logfile interactively:
+atop -r
+
+# View the contents of the standard logfile of the day before yesterday interactively:
+atop -r yy
+
+# View the contents of the standard logfile of 2010, January 7 from 02:00 PM onwards interactively:
+atop -r 20100107 -b 14:00
+

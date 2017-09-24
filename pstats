@@ -1,0 +1,3 @@
+# Handy Python profiling analysis with pstats' interactive browser
+# source: http://stefaanlippens.net/python_profiling_with_pstats_interactive_mode/
+python -m pstats barbazzr.profile

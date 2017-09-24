@@ -1,0 +1,21 @@
+# slabtop - display kernel slab cache information in real time
+
+# source: https://linux.die.net/man/1/slabtop
+# source: https://www.toofishes.net/blog/linux-command-day-slabtop/
+
+slabtop -o -s c | head -n15
+ Active / Total Objects (% used)    : 14740085 / 16754440 (88.0%)
+ Active / Total Slabs (% used)      : 901878 / 901878 (100.0%)
+ Active / Total Caches (% used)     : 67 / 90 (74.4%)
+ Active / Total Size (% used)       : 10704372.77K / 11666603.83K (91.8%)
+ Minimum / Average / Maximum Object : 0.01K / 0.70K / 8.00K
+
+  OBJS ACTIVE  USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME                   
+11418016 10634618  93%    0.94K 671648       17  10746368K ext4_inode_cache       
+4220790 3221268  76%    0.19K 200990       21    803960K dentry                 
+868140 695855  80%    0.10K  22260       39     89040K buffer_head            
+113876  76792  67%    0.55K   4067       28     65072K radix_tree_node        
+  4725   4198  88%    0.62K    189       25      3024K inode_cache            
+ 17040  17040 100%    0.13K    568       30      2272K ext4_groupinfo_4k      
+ 37825  21066  55%    0.05K    445       85      1780K shared_policy_node     
+ 19380  19380 100%    0.08K    380       51      1520K sysfs_dir_cache        

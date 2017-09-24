@@ -1,0 +1,19 @@
+# iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices, partitions and network filesystems (NFS).
+
+# source: https://linux.die.net/man/1/iostat
+# source: http://www.admin-magazine.com/HPC/Articles/Monitoring-Storage-with-iostat
+
+# Display a single history since boot report for all CPU and Devices.
+iostat
+
+# Display a continuous device report at two second intervals.
+iostat -d 2
+
+# Display six reports at two second intervals for all devices.
+iostat -d 2 6
+
+# Display six reports of extended statistics at two second intervals for devices hda and hdb.
+iostat -x hda hdb 2 6
+
+# Display six reports at two second intervals for device sda and all its partitions (sda1, etc.)
+iostat -p sda 2 6
