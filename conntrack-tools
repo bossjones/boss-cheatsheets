@@ -1,0 +1,25 @@
+# The conntrack-tools are a set of free software tools for GNU/Linux that allow system administrators interact, from user-space, with the in-kernel Connection Tracking System, which is the module that enables stateful packet inspection for iptables.
+
+
+# http://conntrack-tools.netfilter.org/manual.html
+
+# show info from /proc/net/ip_conntrack
+$ conntrack -L
+ tcp      6 431982 ESTABLISHED src=192.168.2.100 dst=123.59.27.117 sport=34846 dport=993 packets=169 bytes=14322 src=123.59.27.117 dst=192.168.2.100 sport=993 dport=34846 packets=113 bytes=34787 [ASSURED] mark=0 secmark=0 use=1
+ tcp      6 431698 ESTABLISHED src=192.168.2.100 dst=123.59.27.117 sport=34849 dport=993 packets=244 bytes=18723 src=123.59.27.117 dst=192.168.2.100 sport=993 dport=34849 packets=203 bytes=144731 [ASSURED] mark=0 secmark=0 use=1
+conntrack v0.9.7 (conntrack-tools): 2 flow entries have been shown.
+
+# You can natively filter the output without using grep
+$ conntrack -L -p tcp --dport 34856
+ tcp      6 431982 ESTABLISHED src=192.168.2.100 dst=123.59.27.117 sport=34846 dport=993 packets=169 bytes=14322 src=123.59.27.117 dst=192.168.2.100 sport=993 dport=34846 packets=113 bytes=34787 [ASSURED] mark=0 secmark=0 use=1
+conntrack v0.9.7 (conntrack-tools): 1 flow entries have been shown.
+
+# Display the connection tracking events
+$ conntrack -E
+     [NEW] udp      17 30 src=192.168.2.100 dst=192.168.2.1 sport=57767 dport=53 [UNREPLIED] src=192.168.2.1 dst=192.168.2.100 sport=53 dport=57767
+  [UPDATE] udp      17 29 src=192.168.2.100 dst=192.168.2.1 sport=57767 dport=53 src=192.168.2.1 dst=192.168.2.100 sport=53 dport=57767
+     [NEW] tcp      6 120 SYN_SENT src=192.168.2.100 dst=66.102.9.104 sport=33379 dport=80 [UNREPLIED] src=66.102.9.104 dst=192.168.2.100 sport=80 dport=33379
+  [UPDATE] tcp      6 60 SYN_RECV src=192.168.2.100 dst=66.102.9.104 sport=33379 dport=80 src=66.102.9.104 dst=192.168.2.100 sport=80 dport=33379
+  [UPDATE] tcp      6 432000 ESTABLISHED src=192.168.2.100 dst=66.102.9.104 sport=33379 dport=80 src=66.102.9.104 dst=192.168.2.100 sport=80 dport=33379 [ASSURED]
+
+
