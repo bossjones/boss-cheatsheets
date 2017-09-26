@@ -1,0 +1,23 @@
+# A tool to list and diagnose Go processes currently running on your system
+# source: https://github.com/google/gops
+
+$ gops
+983   980    uplink-soecks go1.9 (/usr/local/bin/uplink-soecks)
+52697 52695  gops          go1.9 (/Users/jbd/bin/gops)
+4132  4130   foops*        go1.9 (/Users/jbd/bin/foops)
+51130 51128  gocode        go1.9 (/Users/jbd/bin/gocode)
+
+
+# install
+go get -u github.com/google/gops
+
+
+gops stack (<pid>|<addr>)
+
+gops memstats (<pid>|<addr>)
+
+gops memstats (<pid>|<addr>)
+
+gops version (<pid>|<addr>)
+
+gops stats (<pid>|<addr>)
