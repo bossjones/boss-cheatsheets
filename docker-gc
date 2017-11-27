@@ -1,0 +1,23 @@
+# source: https://github.com/spotify/docker-gc
+
+# Description: spotify/docker-gc
+
+# Running as a Docker Container
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc
+
+# Running as a Docker Container with user namespaces off
+docker run --rm --userns host -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc
+
+# dry-run
+DRY_RUN=1 docker-gc
+
+# Excluding Recently Exited Containers and Images From Garbage Collection
+GRACE_PERIOD_SECONDS=86400 docker-gc
+
+# Forcing deletion of containers
+FORCE_CONTAINER_REMOVAL=1 docker-gc
+
+# Forcing deletion of images that have multiple tags
+FORCE_IMAGE_REMOVAL=1 docker-gc
+
+
