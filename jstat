@@ -1,0 +1,4 @@
+# The jstat utility uses the built-in instrumentation in the Java HotSpot VM to provide information about performance and resource consumption of running applications
+
+# Samples for Generation Collection with jstat Utility
+jstat -gcutil -h5 2834 250 7

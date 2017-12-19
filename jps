@@ -1,0 +1,2 @@
+# Print running jvm of current user with arguments and pid
+jps -mlv
