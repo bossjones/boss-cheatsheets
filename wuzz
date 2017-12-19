@@ -1,7 +1,10 @@
+# install wuzz
+go get github.com/asciimoo/wuzz
+
 # wuzz - Interactive cli tool for HTTP inspection
-# 
+#
 # Usage: wuzz [-H|--header=HEADER]... [-D|--data=POST_DATA] [-t|--timeout=MSECS] [URL]
-# 
+#
 # Key bindings:
 #   ctrl+r              Send request
 #   ctrl+s              Save response
