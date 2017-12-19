@@ -1,0 +1,31 @@
+# USE = Utilization Saturation Errors
+
+# *********************************************
+# CPU
+# *********************************************
+# <><><><><><><><>CPU: Utilization<><><><><><><>
+# CPU utilization system-wide:
+iostat 1, "us" + "sy";
+
+# CPU utilization per-cpu:
+DTrace [1];
+Activity Monitor → CPU Usage or Floating CPU Window;
+
+# CPU utilization per-process:
+top -o cpu, "%CPU";
+Activity Monitor → Activity Monitor, "%CPU";
+
+# CPU per-kernel-thread:
+DTrace profile stack()
+
+# *********************************************
+# Memory Capacity
+# *********************************************
+
+# *********************************************
+# Network Interfaces
+# *********************************************
+
+# *********************************************
+# Storage device I/O
+# *********************************************
