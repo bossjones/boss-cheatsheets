@@ -140,3 +140,7 @@ It is recommended to install `cheat` with `pip`:
 mkvirtualenv --python=python2 cheat2
 pip install cheat
 ```
+
+# Thanks
+
+Borrowed some of the java cheats from https://github.com/chhsiao90/cheatsheets-java

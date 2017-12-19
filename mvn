@@ -1,0 +1,13 @@
+# Desc: Maven
+
+# export dependencies
+mvn dependency:copy-dependencies
+
+# install jar into local repository
+mvn deploy:deploy-file -Durl=file:///path/to/yourproject/repo/ -Dfile=mylib-1.0.jar -DgroupId=com.example -DartifactId=mylib -Dpackaging=jar -Dversion=1.0
+
+# install jar into local repository with pom.xml
+mvn deploy:deploy-file -Durl=file:///path/to/yourproject/repo/ -Dfile=mylib-1.0.jar -DpomFile=pom.xml
+
+# run with embeded tomcat
+mvn tomcat7:run

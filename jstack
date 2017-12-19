@@ -1,0 +1,2 @@
+# Thread dump of specific JVM with pid $pid
+jstack -l $pid

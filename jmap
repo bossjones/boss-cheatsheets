@@ -1,0 +1,5 @@
+# Do heap dump into a file
+jmap -dump:format=b,file=dump.hprof $pid
+
+# Get heap information of jvm
+jmap -heap $pid
