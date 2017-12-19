@@ -1,6 +1,6 @@
 boss-cheatsheets
 =====
-`cheat` allows you to create and view interactive cheatsheets on the
+[cheat](https://github.com/chrisallenlane/cheat) allows you to create and view interactive cheatsheets on the
 command-line. It was designed to help remind \*nix system administrators of
 options for commands that they use frequently, but not frequently enough to
 remember.
@@ -124,7 +124,7 @@ it is agnostic as to what content it stores. If you would like to use `cheat`
 to store notes on your favorite cookie recipes, feel free.
 
 
-Installing
+Installing Cheat CLI
 ----------
 It is recommended to install `cheat` with `pip`:
 
