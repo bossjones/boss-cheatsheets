@@ -1,0 +1,4 @@
+# easy_install shodan
+# easy_install -U shodan
+# shodan init <API_KEY>
+# https://cli.shodan.io/
