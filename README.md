@@ -7,6 +7,25 @@ remember.
 
 This repo contains a number of commands that bossjones likes to use when debugging things, feel free to contribute to the list by making a PR!
 
+## Install custom cheatsheets
+
+```sh
+git clone https://github.com/bossjones/boss-cheatsheets ~/.cheat
+```
+
+## Update custom cheatsheets
+
+```sh
+# update cheatsheets
+pushd ~/.cheat
+git pull
+popd
+
+# View cheatsheets
+cheat -l
+```
+
+
 Example
 -------
 Forgot all of your go-to commands for sysdig? No problem, just run:
@@ -120,22 +139,4 @@ It is recommended to install `cheat` with `pip`:
 ```sh
 mkvirtualenv --python=python2 cheat2
 pip install cheat
-```
-
-## Install custom cheatsheets
-
-```sh
-git clone https://github.com/bossjones/boss-cheatsheets ~/.cheat
-```
-
-## Update custom cheatsheets
-
-```sh
-# update cheatsheets
-pushd ~/.cheat
-git pull
-popd
-
-# View cheatsheets
-cheat -l
 ```
