@@ -1,5 +1,3 @@
-[![PyPI](https://img.shields.io/pypi/v/cheat.svg)](https://pypi.python.org/pypi/cheat/)
-
 boss-cheatsheets
 =====
 `cheat` allows you to create and view interactive cheatsheets on the
