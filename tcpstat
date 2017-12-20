@@ -1,0 +1,14 @@
+# Displays the default statistics every 5 seconds of all traffic currently passing through the fxp0 network interface.
+tcpstat -i fxp0
+
+
+# Displays the default statistics every 5 seconds from the tcpdump(1) generated file "file.dump".
+tcpstat -r file.dump
+
+# Displays every 2.3 seconds the timestamp together with smtp and http traffic throughput of the data from "file.dump", in a format which would be suitable for gnuplot(1).
+tcpstat -f 'port (smtp or http)' -o '%S %b\n' -r file.dump 2.3
+
+
+# Displays what percentage of the traffic in file.dump exceeded the speed of my modem (28800 bits per second.)
+tcpstat -b 28800 -r file.dump 0.5
+
