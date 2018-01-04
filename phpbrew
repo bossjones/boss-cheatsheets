@@ -1,0 +1,5 @@
+# install https://github.com/phpbrew/phpbrew
+
+# install
+phpbrew install 7.1 +default +pdo +mysql
+phpbrew app get composer
