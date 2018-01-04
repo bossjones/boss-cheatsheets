@@ -31,3 +31,7 @@
 #
 # Your terminal emulator must be support true color feature in order to display image colors in a right way. In addition, you must use a monospaced font that includes the lower half block unicode character ▄ (U+2584). I personally recommend Envy Code R. It's the nice font that shows in the screenshots.
 # https://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released
+
+
+# install
+go get -u github.com/eliukblau/pixterm
