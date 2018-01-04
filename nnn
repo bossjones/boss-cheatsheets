@@ -1,0 +1,6 @@
+# ncdu but faster
+# https://github.com/jarun/nnn
+nnn
+
+# install os x
+brew install nnn
