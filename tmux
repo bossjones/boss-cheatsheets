@@ -8,7 +8,7 @@ Ctrl-b d
 tmux attach
 
 # Detach an already attached session (great if you are moving devices with different screen resolutions)
-tmux attach -d 
+tmux attach -d
 
 # Display session:
 tmux ls
@@ -57,3 +57,30 @@ Ctrl-c ~
 
 # rename window
 Ctrl-c ,
+
+# This assumes that you've hit ctrl + b and : to get to the command prompt
+:resize-pane -L
+
+# (Resizes the current pane down)
+:resize-pane -D
+
+# (Resizes the current pane upward)
+:resize-pane -U
+
+# (Resizes the current pane left)
+:resize-pane -L
+
+# (Resizes the current pane right)
+:resize-pane -R
+
+# (Resizes the current pane down by 10 cells)
+:resize-pane -D 10
+
+# (Resizes the current pane upward by 10 cells)
+:resize-pane -U 10
+
+# (Resizes the current pane left by 10 cells)
+:resize-pane -L 10
+
+# (Resizes the current pane right by 10 cells)
+:resize-pane -R 10
