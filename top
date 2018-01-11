@@ -24,3 +24,6 @@ top -h
 
 # Order the display by sorting on <key> in descending order
 top -o <key>
+
+# Sort the processes according to CPU usage (descending) and resident memory size (ascending), sample and update the display at 5 second intervals, and limit the display to 20 processes.
+top -o cpu -O +rsize -s 5 -n 20
