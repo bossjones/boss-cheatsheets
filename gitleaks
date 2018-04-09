@@ -1,0 +1,7 @@
+# install
+go get -u github.com/zricethezav/gitleaks
+
+# Usage and Explanation
+./gitleaks [options] <url/path>
+
+# more: https://github.com/zricethezav/gitleaks
