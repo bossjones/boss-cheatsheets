@@ -1,3 +1,29 @@
 # etcdctl ls
 for i in `etcdctl ls /images --recursive`; do echo "$i --- $(etcdctl get $i)"; done|sort
 
+# view keys and directories
+etcdctl ls /
+
+# view keys and directories recursively
+etcdctl ls / --recursive
+
+# setting keys and creating nodes
+etcdctl mkdir /example
+
+# get data
+etcdctl get /example/key
+
+# update existing key
+etcdctl update /example/key turtles
+
+# change existing key
+etcdctl set /example/key new
+
+# watch for changes
+etcdctl watch /example/hello
+
+# watch for changes extended
+etcdctl exec-watch --recursive  /example -- echo "hello"
+
+# watch for changes extended recursive 
+while true; do etcdctl watch --recursive /example; done
