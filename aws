@@ -1,0 +1,8 @@
+# aws iam
+
+# When Are Your SSL Certificates Expiring on AWS?
+aws iam list-server-certificates \
+  --output text \
+  --query 'ServerCertificateMetadataList[*].[Expiration,ServerCertificateName]' \
+  | sort
+
