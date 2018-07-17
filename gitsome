@@ -1,0 +1,12 @@
+# A supercharged Git/GitHub command line interface (CLI). An official integration for GitHub and GitHub Enterprise: github.com/works-with/category/desktop-tools
+
+# install
+pip3 install gitsome
+
+
+# bash completion
+touch ~/.xonshrc
+
+# content of ~/.xonshrc
+# NOTE: Xonsh allows you to have run control files to customize your shell behavior. These are called xonshrc files.
+$BASH_COMPLETIONS.append('/usr/local/etc/my_bash_completion.d/completion.bash')

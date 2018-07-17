@@ -1,0 +1,6 @@
+# Desc: A terminal multiplexer (like tmux) in Python
+
+# install
+pip install pymux
+
+#
