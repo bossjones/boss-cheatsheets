@@ -1,0 +1,11 @@
+# SOURCE: https://github.com/zevv/lsofgraph
+
+# Generate graph
+sudo lsof -n -F | ./lsofgraph | dot -Tjpg > /tmp/a.jpg
+
+# Add unflatten to the chain for a better layout
+sudo lsof -n -F | ./lsofgraph | unflatten -l 1 -c 6 | dot -T jpg > /tmp/a.jpg
+
+
+# python port
+# SOURCE: https://github.com/akme/lsofgraph-python
