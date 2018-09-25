@@ -1,0 +1,31 @@
+# l[list] - List source code for the current ﬁle
+list
+
+# n[ext] - Continue execution until the next line
+n
+
+# s[tep]
+s
+
+# r[return]
+r
+
+# c[ontinue]
+c
+
+# w[here]
+w
+
+# u[p]
+u
+
+# d[own]
+d
+
+# b[reakpoint]
+b
+
+# a[args] - print the argument list of the current function
+a
+
+
