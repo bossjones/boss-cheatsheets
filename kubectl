@@ -306,3 +306,60 @@ kubectl api-resources -o wide
 kubectl api-resources --verbs=list,get
 # All resources in the "extensions" API group
 kubectl api-resources --api-group=extensions
+
+
+
+#############################################################
+# Bossjones kube
+#############################################################
+# Get pods running on kube-system namespace
+kubectl get po -n kube-system
+
+# OUTPUT:
+#  |2.4.3|    dev7-behance in ~/dev/charts/stable
+# ± |master ✓| → kubectl get po -n kube-system
+# NAME                                    READY   STATUS    RESTARTS   AGE
+# coredns-c4cffd6dc-q9bq6                 1/1     Running   0          7m
+# etcd-minikube                           1/1     Running   0          6m
+# kube-addon-manager-minikube             1/1     Running   0          6m
+# kube-apiserver-minikube                 1/1     Running   0          6m
+# kube-controller-manager-minikube        1/1     Running   0          6m
+# kube-dns-86f4d74b45-tp8md               3/3     Running   0          7m
+# kube-proxy-wb5lk                        1/1     Running   0          7m
+# kube-scheduler-minikube                 1/1     Running   0          6m
+# kubernetes-dashboard-6f4cfc5d87-j9b77   1/1     Running   0          7m
+# storage-provisioner                     1/1     Running   0          7m
+
+
+#############################################################
+# Bossjones kube - helm setup and RBAC
+#############################################################
+# SOURCE: https://github.com/helm/helm/issues/3460
+kubectl delete svc tiller-deploy -n kube-system
+kubectl -n kube-system delete deploy tiller-deploy
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+helm ls # does not return an error
+
+# proof it's working
+helm upgrade -i --namespace kube-system autoscale -f cluster-autoscaler/my-values.yaml cluster-autoscaler
+
+helm ls
+# NAME     	REVISION	UPDATED                 	STATUS  	CHART                   	NAMESPACE
+# autoscale	1       	Wed May  2 17:07:52 2018	DEPLOYED	cluster-autoscaler-0.6.1	kube-system
+
+# https://docs.helm.sh/using_helm/#role-based-access-control
+# https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions
+# https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/
+# https://stackoverflow.com/questions/50042159/missingtiller-dial-tcp-127-0-0-18080-connect-connection-refused
+# https://docs.bitnami.com/kubernetes/get-started-kubernetes/
+# https://medium.com/@anthonyganga/getting-started-with-helm-tiller-in-kubernetes-part-one-3250aa99c6ac
+# https://blog.because-security.com/t/minikube-on-mac-os-x-with-vmware-fusion-for-local-development-and-a-not-so-local-future/319
+# https://github.com/Alfresco/acs-deployment/blob/master/docs/helm-deployment-minikube.md
+# https://continuous.lu/2017/04/28/minikube-and-helm-kubernetes-package-manager/
+# https://github.com/helm/charts/tree/master/incubator/elasticsearch
+# https://github.com/ramitsurana/awesome-kubernetes
+# https://blog.sourcerer.io/a-kubernetes-quick-start-for-people-who-know-just-enough-about-docker-to-get-by-71c5933b4633
+# QUICKSTART: https://gist.github.com/F21/08bfc2e3592bed1e931ec40b8d2ab6f5
+# http://127.0.0.1:63569/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
