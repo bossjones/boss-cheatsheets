@@ -1,0 +1,128 @@
+#############################################################
+# Bossjones kube - helm setup and RBAC
+#############################################################
+# SOURCE: https://github.com/helm/helm/issues/3460
+kubectl delete svc tiller-deploy -n kube-system
+kubectl -n kube-system delete deploy tiller-deploy
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+helm ls # does not return an error
+
+# proof it's working
+helm upgrade -i --namespace kube-system autoscale -f cluster-autoscaler/my-values.yaml cluster-autoscaler
+
+helm ls
+# NAME     	REVISION	UPDATED                 	STATUS  	CHART                   	NAMESPACE
+# autoscale	1       	Wed May  2 17:07:52 2018	DEPLOYED	cluster-autoscaler-0.6.1	kube-system
+
+# https://docs.helm.sh/using_helm/#role-based-access-control
+# https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions
+# https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/
+# https://stackoverflow.com/questions/50042159/missingtiller-dial-tcp-127-0-0-18080-connect-connection-refused
+# https://docs.bitnami.com/kubernetes/get-started-kubernetes/
+# https://medium.com/@anthonyganga/getting-started-with-helm-tiller-in-kubernetes-part-one-3250aa99c6ac
+# https://blog.because-security.com/t/minikube-on-mac-os-x-with-vmware-fusion-for-local-development-and-a-not-so-local-future/319
+# https://github.com/Alfresco/acs-deployment/blob/master/docs/helm-deployment-minikube.md
+# https://continuous.lu/2017/04/28/minikube-and-helm-kubernetes-package-manager/
+# https://github.com/helm/charts/tree/master/incubator/elasticsearch
+# https://github.com/ramitsurana/awesome-kubernetes
+# https://blog.sourcerer.io/a-kubernetes-quick-start-for-people-who-know-just-enough-about-docker-to-get-by-71c5933b4633
+# QUICKSTART: https://gist.github.com/F21/08bfc2e3592bed1e931ec40b8d2ab6f5
+# http://127.0.0.1:63569/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+
+
+
+
+
+######################
+# k8 tutorial ( minikube )
+######################
+
+### Create a deployment
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+
+
+### Create a service
+kubectl expose deployment hello-minikube --type=NodePort
+
+
+### List the pods
+kubectl get pod
+
+
+### List the service
+kubectl get service
+
+
+### Test the service
+curl $(minikube service hello-minikube --url)/health
+
+
+### List the ReplicaSets
+kubectl get rs
+
+
+### Scale the ReplicaSet
+kubectl scale deployments/hello-minikube --replicas=3
+
+
+### List the pods
+kubectl get pod
+
+
+### Test the service
+curl $(minikube service hello-minikube --url)/health3
+
+
+### Show the dashboard
+open $(minikube service kubernetes-dashboard --namespace=kube-system --url)
+
+
+
+#### -----------[example of local minikube dev]----------------
+
+# bring up minikube
+$ minikube start
+
+# enable nginx-ingress
+$ minikube addons enable ingress
+
+# start nginx containers as backends
+$ kubectl run nginx --image=nginx
+
+# expose it
+$ kubectl expose deploy nginx --port=80 --target-port=80
+
+# apply
+$ cat <<EOL | kubectl apply -f -
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx.minikube.dev
+spec:
+  rules:
+  - host: nginx.minikube.dev
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+EOL
+
+# test
+$ curl http://nginx.minikube.dev/
+
+
+######################################
+# Autocomplete
+######################################
+
+# VMware Fusion command-line utils
+export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
+
+source <(kubectl completion bash)
+source <(helm completion bash)
+
+
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
