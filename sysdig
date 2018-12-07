@@ -76,3 +76,20 @@ sysdig -pc -c topprocs_cpu container.name=mesos-ad8a3341-0f7c-4a28-ac47-744c6767
 
 # Show all the interactive commands executed inside the container
 sysdig -pc -c spy_users container.name=mesos-ad8a3341-0f7c-4a28-ac47-744c6767990e-S18.4b5c695e-f885-47f3-9a77-7b024ffa7aa1
+
+
+
+######################
+sysdig -pc -c spy_users container.name=mesos-c84a09a0-09be-49f8-b12e-0203def80277-S28.00d2b359-7f37-46a9-a216-1c9d06a9475f
+
+csysdig -vcontainers container.id=a586e6c4eacb
+
+# coreos version docker
+docker run --rm -i -t --name sysdig --privileged --userns=host -v /var/run/docker.sock:/host/var/run/docker.sock -v /dev:/host/dev -v /proc:/host/proc:ro -v /boot:/host/boot:ro -v /lib/modules:/host/lib/modules:ro -v /usr:/host/usr:ro 627725623485.dkr.ecr.us-east-1.amazonaws.com/behance/sysdig:latest
+
+# mount user folder to save scap files etc
+docker run --rm -i -t --name sysdig --privileged --userns=host -v /var/run/docker.sock:/host/var/run/docker.sock -v /dev:/host/dev -v /proc:/host/proc:ro -v /boot:/host/boot:ro -v /lib/modules:/host/lib/modules:ro -v /usr:/host/usr:ro -v /home/malcolm:/host/home/malcolm:rw 627725623485.dkr.ecr.us-east-1.amazonaws.com/behance/sysdig:latest
+
+# open up csysdig from scap file, limit to container id
+
+csysdig -r /host/home/malcolm/debugging/logs/dumpfile.scap -vcontainers container.id="a03bf453213d" -c echo_fds
