@@ -84,3 +84,12 @@ Ctrl-c ,
 
 # (Resizes the current pane right by 10 cells)
 :resize-pane -R 10
+
+# Show all current options
+tmux show-options -g
+
+# Show all current window options
+tmux show-options -w
+
+# Show all current server options
+tmux show-options -s

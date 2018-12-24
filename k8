@@ -2,7 +2,7 @@
 # Bossjones kube - helm setup and RBAC
 #############################################################
 
-minikube start --vm-driver="vmwarefusion" --cpus=4 --memory=6000  --v=7 --alsologtostderr
+minikube start --vm-driver="vmwarefusion" --cpus=4 --memory=6000  --v=7 --alsologtostderr --extra-config=apiserver.Authorization.Mode=RBAC
 
 # SOURCE: https://github.com/helm/helm/issues/3460
 kubectl delete svc tiller-deploy -n kube-system
