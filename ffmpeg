@@ -10,3 +10,101 @@ for f in *.m4a; do ffmpeg -i "$f" -acodec libmp3lame -ab 320k "${f%.m4a}.mp3"; d
 # -t  : seconds to cut
 # -autoexit : closes ffplay as soon as the audio finishes
 ffmpeg -ss 00:34:24.85 -t 10 -i path/to/file.mp4 -f mp3 pipe:play | ffplay -i pipe:play -autoexit
+
+############################################################################################################################################################
+# SOURCE: https://www.vardanega.eu/2020/08/essential-ffmpeg-cheat-sheet/
+############################################################################################################################################################
+
+# h.264 low quality browser compatible
+ffmpeg -i %inputfile% -map 0:v -map 0:a -c:v libx264 -b:v 1500k -s 640x360 -ac 2 -bf 0 -y %outputfile%
+
+# Multiformat low quality
+ffmpeg -i %inputfile% -map 0:v -map 0:a -c:v mpeg2video -b:v 3500k -s 640x360 -y %outputfile% -ac 2 %outputfile%.mp4 -cpu-used 5 -deadline realtime %outputfile%.webm
+# Watermark on HD video
+ffmpeg -i %inputfile% -vf "movie=logo.png [watermark]; [in][watermark] overlay=1820:980 [out]" %outputfile%
+
+# Watermark and resize
+ffmpeg -i %inputfile% -i logo.png -filter_complex "scale=480:384, overlay=44:44" -s 480x384 -c:v libx264 -b:v 500k -y %outputfile%
+
+# Stereo track from an 7.1 input
+ffmpeg -i %inputfile% -c:v mpeg2video -b:v 3M -s 720x576 -aspect 16:9 -flags +ildct+ilme -map_channel 0.1.0 -map_channel 0.2.0 -y %outputfile%
+
+# DVCPRO HD from a P2 CAMERA using ffmbc
+# ffmbc.exe -i a.MXF -i a00.MXF -i a01.mxf -i a02.mxf -i a03.mxf -map 0 -map_audio_channel 1.0:0:0.1 -map_audio_channel 2.0:0:0.1 -map_audio_channel 3.0:0:0:1 -map_audio_channel 4.0:0:0:1 -target dvcprohd -y hdproaudio.mov
+ffmpeg -i a.MXF -i a00.MXF -i a01.mxf -i a02.mxf -i a03.mxf -map 0 \
+-map_audio_channel 1.0:0:0.1 -map_audio_channel 2.0:0:0.1 \
+-map_audio_channel 3.0:0:0:1 -map_audio_channel 4.0:0:0:1 \
+-target dvcprohd -y hdproaudio.mov
+
+# Exclude data streams
+# Map all input streams, except for the data streams (http://ffmpeg.gusari.org/viewtopic.php?f=11&t=1042)
+
+# -i %inputfile% -map 0 -map -0:d -y %outputfile%
+# Exclude subtitle streams
+# Map all input streams, except for the subtitle streams (http://ffmpeg.gusari.org/viewtopic.php?f=11&t=1042)
+ffmpeg -i %inputfile% -map 0 -map -0:s -y %outputfile%
+
+# Trim a clip (the slow way)
+ffmpeg -i %inputfile% -s 00:00:10 -t 00:00:05 -codec copy -y %outputfile%
+# Trim a clip (the fast way)
+-ss 00:00:10 -i %inputfile% -t 00:00:05 -codec copy -y %outputfile%
+# Preserve XMP metadata in the output file
+ffmpeg -export_xmp 1 -export_all 1 -i INPUT.MOV -codec copy -export_xmp 1 -export_all 1 OUTPUT.MOV
+
+# Downmix 4 mono tracks to a stereo track (amerge)
+ffmpeg -i %inputfile% -filter_complex "[0:1][0:2][0:3][0:4] amerge=inputs=4" -ac 2 -y %outputfile%
+
+# Audio channels splitting: from stereo to mono tracks
+# Two commands that split a single stereo track into two mono tracks.
+ffmpeg -i %inputfile% -map 0:1 -map 0:2 -map 0:2 -map_channel 0.2.0:0.1.0 -map_channel 0.2.1:0.2.0 %outputfile%
+ffmpeg -i %inputfile% -filter_complex channelsplit %outputfile%
+
+# Playing with framecount on screen
+# Play the video showing the framecount. Require the *.ttf font file to be in the same folder of the video file.
+ffplay -i %inputfile% -vf "drawtext=fontfile=AGENCYB.ttf: text=%{n}: x=(w-tw)/2: y=h-(2*lh): fontcolor=white: box=1: boxcolor=0x00000099"
+
+# XDCAM
+ffmpeg -i %inputfile% -s 1920x1080 -map 0:v -map 0:a -pix_fmt yuv422p -c:v mpeg2video -flags +ildct+ilme -top 1 -vtag xd5e -b:v 50M -c:a pcm_s16le -ar 48000 -r 25 -y %outputfile%
+
+# HD crop zoom pillar
+# crop and scale (cut side bands from HD 16:9 to downscale to SD 4:3
+ffmpeg -i %inputfile% -map 0:v -map 0:a -filter_complex "crop=w=1350:h=1080:x=285:y=0" -s 720x576 -aspect 4:3 -c:v dvvideo -y %outputfile%
+
+# SD pillarbox
+# Upscale an SD 4:3 to an HD 16:9 with black side stripes
+ffmpeg -i %inputfile% -map 0:v -map 0:a -filter_complex "scale=1350:1080, pad=1920:1080:285:0:black" -y %outputfile%
+HLS
+
+# Generate an HLS ready-for-streaming file for Apple devices (and others)
+ffmpeg -i %inputfile% -s 480x272 -hls_list_size 0 -hls_time 10 %outputfile%.m3u8
+
+# Concatenation of files
+# If you want to join a bunch of video files into one single long video you have three choices with ffmpeg:
+# 1. concatenation protocol
+# 2. concatenation demux
+# 3. concatenation filter
+
+# Concatenation protocol
+# This is rather useless, it just binary-copy the input files in a single big files, almost regardless any video info contained. You could have joined the files with any other byte-copy tool
+ffmpeg -i "concat:input1.mpg|input2.mpg|input3.mpg" -c copy %outputfile%
+
+# Concatenation demux
+# Useful for video files using the same codecs, it remux the input file streams into a single video file
+# cat mylist.txt
+# # this is a comment
+# file '/path/to/file1'
+# file '/path/to/file2'
+# file '/path/to/file3'
+ffmpeg -f concat -i mylist.txt -c copy %outputfile%
+
+# Concatenation filter
+# This is the non-plus-ultra way of joining video files with ffmpeg. It can join any type of files, and can also trim the input files. Can be used as a quick video editor backend
+ffmpeg -i a.mov -i b.mov -i c.mov -filter_complex "[0:0] [0:1] [1:0] [1:1] concat=n=3:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" -c:v libx264 -c:a libvo_aacenc -f mpegts -y abc.ts
+
+# Concatenation filter + watermark
+ffmpeg -i a.mov -i b.mov -i c.mov -i logo.png -filter_complex "concat=n=3:v=1:a=1 [v] [a];[v][3:v] overlay=0:0 [vl]" -map "[vl]" -map "[a]" -c:v libx264 -c:a libvo_aacenc -b:v 4000k -q:v 0 -f mpegts -y abc.ts
+
+# Concatenation filter + watermark + resize
+ffmpeg -i a.mov -i b.mov -i c.mov -i logo.png \
+-filter_complex "concat=n=3:v=1:a=1 [v] [a];[v] scale=1080:608 [vs];[vs][3:v] overlay=x=870:y=50 [vls]" \
+-map [vls] -map [a] -c:v libx264 -b:v 4000k -q:v 0 -c:a libvo_aacenc -preset fast -f mpegts -y out.ts
