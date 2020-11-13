@@ -108,3 +108,9 @@ ffmpeg -i a.mov -i b.mov -i c.mov -i logo.png -filter_complex "concat=n=3:v=1:a=
 ffmpeg -i a.mov -i b.mov -i c.mov -i logo.png \
 -filter_complex "concat=n=3:v=1:a=1 [v] [a];[v] scale=1080:608 [vs];[vs][3:v] overlay=x=870:y=50 [vls]" \
 -map [vls] -map [a] -c:v libx264 -b:v 4000k -q:v 0 -c:a libvo_aacenc -preset fast -f mpegts -y out.ts
+
+# Concat protocol | Using named pipes to avoid intermediate files (https://trac.ffmpeg.org/wiki/Concatenate)
+mkfifo temp1 temp2
+ffmpeg -y -i input1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts temp1 2> /dev/null & \
+ffmpeg -y -i input2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts temp2 2> /dev/null & \
+ffmpeg -f mpegts -i "concat:temp1|temp2" -c copy -bsf:a aac_adtstoasc output.mp4
