@@ -31,7 +31,7 @@ $ op get item nqikpd2bdjae3lmizdajy2rf6e --fields password
 
 # For multiple fields, specify them in a comma-separated list. The tool returns a JSON object:
 $ op get item nqikpd2bdjae3lmizdajy2rf6e --fields username,password
-{"username": "wendy_appleseed", "password": "5ra3jOwnUsXVjx5GL@FX2d7iZClrrQDc"}
+# {"username": "wendy_appleseed", "password": "5ra3jOwnUsXVjx5GL@FX2d7iZClrrQDc"}
 
 # sign in
 op signin my.1password.com darkelflegend@yahoo.com
