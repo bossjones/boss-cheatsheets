@@ -1,0 +1,56 @@
+# check version
+op --version
+
+# The first time you use the 1Password command-line tool, you'll need to enter your sign-in address and email address
+op signin example.1password.com wendy_appleseed@example.com
+
+# After you sign in the first time, you can sign in again using your account shorthand, which is your sign-in address subdomain. op signin will prompt you for your Master Password and output a command that can save your session token to an environment variable:
+op signin example
+
+# To set the environment variable, run the export command manually, or use eval to set it automatically
+eval $(op signin example)
+
+# Now that you have a session token, you can start using the tool. For example, to show all the items in your account. Session tokens expire after 30 minutes of inactivity, after which you'll need to sign in again
+op list items
+
+# You can use the tool to work with users, vaults, and items. For example, here's how to upload a document to your Private vault:
+op create document readme.txt --vault Private
+
+# To see a list of all the items in your Shared vault:
+op list items --vault Shared
+
+# The output will show the UUIDs of the items. To get the details of an item:
+op get item WestJet
+
+# You can use names or UUIDs in commands that take any user, vault, or item as an argument. Use UUIDs because they'll never change, so you can be sure you're always referring to the same object. It's also faster and more efficient.
+op get item nqikpd2bdjae3lmizdajy2rf6e
+
+# You can get details of just the fields you want. For one field, the tool returns a simple string:
+$ op get item nqikpd2bdjae3lmizdajy2rf6e --fields password
+5ra3jOwnUsXVjx5GL@FX2d7iZClrrQDc
+
+# For multiple fields, specify them in a comma-separated list. The tool returns a JSON object:
+$ op get item nqikpd2bdjae3lmizdajy2rf6e --fields username,password
+{"username": "wendy_appleseed", "password": "5ra3jOwnUsXVjx5GL@FX2d7iZClrrQDc"}
+
+# sign in
+op signin my.1password.com darkelflegend@yahoo.com
+
+# setup completion for zsh
+eval "$(op completion zsh)"; compdef _op op
+
+# create a new document based on a file
+op create document ~/.private --filename ".private.vault" --tags "dotfiles" --title ".private.vault"
+
+# pull back value in 1pass and write it to disk
+op get document ".private.vault" --output ~/.private.vault
+
+# Add custom dotfile docs to 1pass 
+op create document ~/.zsh.d/after/ffmpeg.zsh --filename "ffmpeg.zsh" --tags "dotfiles,zsh" --title "~/.zsh.d/after/ffmpeg.zsh"
+op create document ~/.zsh.d/after/cv.zsh --filename "cv.zsh" --tags "dotfiles,zsh" --title "~/.zsh.d/after/cv.zsh"
+op create document ~/.zsh.d/after/adobe.zsh --filename "adobe.zsh" --tags "dotfiles,zsh" --title "~/.zsh.d/after/adobe.zsh"
+
+# ~/.zsh.d/after/1pass.zsh
+if [ -f /usr/local/bin/op ]; then
+    eval $(op signin my)
+fi
