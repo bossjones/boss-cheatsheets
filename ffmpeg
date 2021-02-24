@@ -114,3 +114,27 @@ mkfifo temp1 temp2
 ffmpeg -y -i input1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts temp1 2> /dev/null & \
 ffmpeg -y -i input2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts temp2 2> /dev/null & \
 ffmpeg -f mpegts -i "concat:temp1|temp2" -c copy -bsf:a aac_adtstoasc output.mp4
+
+
+# crop youtube tik tok videos
+ffmpeg -y -i "${_input_fname}" -filter:v "crop=403:720:441:436" -c:a copy "${_out_fname}"
+
+# crop youtube tik tok videos(function)
+function crop_yt_tiktoks() {
+    local _input=$(basename -- "${1}" | cut -d"." -f1)
+    local get_extension=$(basename -- $1 | cut -d"." -f2)
+    local _input_fname="${_input}.${get_extension}"
+    local _out_fname="${_input}_out.${get_extension}"
+
+    echo "_input = $_input"
+    echo "get_extension = $get_extension"
+    echo "_input_fname = $_input_fname"
+    echo "_out_fname = $_out_fname"
+
+    echo "ffmpeg -y -i \"${_input_fname}\" -filter:v \"crop=403:720:441:436\" -c:a copy \"${_out_fname}\""
+
+    ffmpeg -y -i "${_input_fname}" -filter:v "crop=403:720:441:436" -c:a copy "${_out_fname}"
+}
+
+# test crop youtube tik tok videos (https://www.linuxuprising.com/2020/01/ffmpeg-how-to-crop-videos-with-examples.html)
+ffplay -filter:v "crop=403:720:441:436" "${_input_fname}"
