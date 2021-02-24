@@ -93,3 +93,6 @@ tmux show-options -w
 
 # Show all current server options
 tmux show-options -s
+
+# show all key bindings (https://til.hashrocket.com/posts/385fee97f3-list-all-tmux-key-bindings)
+tmux list-keys
