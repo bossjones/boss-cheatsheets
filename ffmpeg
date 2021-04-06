@@ -137,4 +137,4 @@ function crop_yt_tiktoks() {
 }
 
 # test crop youtube tik tok videos (https://www.linuxuprising.com/2020/01/ffmpeg-how-to-crop-videos-with-examples.html)
-ffplay -filter:v "crop=403:720:441:436" "${_input_fname}"
+ffplay -i "${_input_fname}" -filter:v "crop=403:720:441:436"
