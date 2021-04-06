@@ -1,0 +1,16 @@
+## how to craft the tiktok share url for youtube-dl to get it
+## Youtube-dl does have a tiktok module, but both its extractors don't seem to work anymore. Maybe I should rather try to fix youtube-dl's code and send them a PR instead of spinning my own version here? But they have a rather strict coding-style policy and take a really long time to merge PRs from what I've seen.
+##    And as reference URLs for this issue:
+
+# User profile: tiktok.com/@zureeal
+youtube-dl https://tiktok.com/@zureeal
+
+# also reachable from: tiktok.com/share/user/188294915489964032 and https://m.tiktok.com/h5/share/usr/188294915489964032.html
+youtube-dl https://tiktok.com/share/user/188294915489964032
+youtube-dl https://m.tiktok.com/h5/share/usr/188294915489964032.html
+
+# Single video: tiktok.com/@zureeal/video/6703218761484209414?langCountry=en
+# also reachable with tiktok.com/share/video/6703218761484209414 and m.tiktok.com/v/6703218761484209414.html by putting a ?langCountry=en at the end of the redirect target
+youtube-dl tiktok.com/@zureeal/video/6703218761484209414?langCountry=en
+youtube-dl tiktok.com/share/video/6703218761484209414
+youtube-dl m.tiktok.com/v/6703218761484209414.html
