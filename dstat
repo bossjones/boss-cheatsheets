@@ -1,0 +1,35 @@
+# To display CPU, disk, net, paging and system statistics (default), use:
+dstat
+
+# To display statistics every 5 seconds and 4 updates only:
+dstat 5 4
+
+# To display CPU and memory statistics only, use:
+dstat --cpu --mem
+
+# To list all available dstat plugins, use: (see above screenshot)
+dstat --list
+
+# Display the process using the most memory and most CPU:
+dstat --top-mem --top-cpu
+
+# To display information in vmstat format, use:
+dstat --vmstat
+
+# To display the stats of all processes, use:
+dstat -a
+
+# To use dstat to relate disk-throughput with network-usage (eth0), total CPU-usage and system counters, use:
+dstat -dnyc -N eth0 -C total -f 5
+
+# To check dstat's behaviour and the system impact of dstat, use:
+dstat -taf --debug
+
+# To use the time plugin together with cpu, net, disk, system, load, proc and top_cpu plugins, use: (see above screenshot)
+dstat -tcndylp --top-cpu
+
+# …this is identical to using:
+dstat --time --cpu --net --disk --sys --load --proc --top-cpu
+
+# To use dstat to relate advanced CPU stats with interrupts per device, use:
+dstat -t --cpu-adv -yif
