@@ -1,4 +1,4 @@
-# To display CPU, disk, net, paging and system statistics (default), use:
+# To display CPU, disk, net, paging and system statistics (default), use (https://haydenjames.io/dstat-command-in-linux-examples/):
 dstat
 
 # To display statistics every 5 seconds and 4 updates only:
