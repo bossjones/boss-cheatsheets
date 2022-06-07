@@ -1,0 +1,19 @@
+# List the metadata attributes for a specified file.
+
+# Syntax
+#       mdls [-name attributeName] [-raw [-nullMarker markerString]] file ...
+# 
+# Key
+#    -name        Print only the matching metadata attribute value.  Can be used multiple times.
+# 
+#    -raw         Print raw attribute data in the order that was requested.
+#                 Fields will be separated with a ASCII NUL character, suitable for piping to xargs(1) -0.
+# 
+#    -nullMarker  Set a marker string to be used when a requested attribute is null.
+#                 Only used in -raw mode.  Default is "(null)".
+
+# Return the application used to create a document:
+$ mdls -n kMDItemCreator /Users/fred/Pictures/Untitled.pxm
+
+# List all cameras and scanners used to make pictures on my Mac via StackOverflow:
+$ mdfind -0 kind:image | xargs -0 mdls -n kMDItemAcquisitionModel | sort -u

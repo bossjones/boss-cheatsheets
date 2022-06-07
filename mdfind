@@ -1,0 +1,90 @@
+# https://metaredux.com/posts/2019/12/22/mdfind.html
+# https://ss64.com/osx/mdfind.html
+
+# Spotlight search
+mdfind [-live] [-count] [-onlyin directory] query
+
+# Key
+#     query       A string or query expression.
+# 
+#     -0          Print an ASCII NUL character after each result path.
+#                 This is useful when used in conjunction with xargs -0.
+# 
+#     -live       Causes the mdfind command to provide live-updates to the 
+#                 number of files matching the query.  When an update causes the
+#                 query results to change the number of matches is updated.
+#                 The find can be cancelled by typing ctrl-C.
+# 
+#     -count      Output the total number of matches, instead of the path 
+#                 to the matching items.
+# 
+#     -onlyin dir
+#                 Limit the scope of the search to the directory specified.
+# 
+#     -literal    Force the provided query string to be taken as a literal
+#                 query string, without interpretation.
+# 
+#     -interpret  Force the provided query string to be interpreted as if the
+#                 user had typed the string into the Spotlight menu.
+#                 For example, the string "search" would produce the following 
+#                 query string:
+#                        (* = search* cdw || kMDItemTextContent = search* cdw)
+
+
+# Here's how you'd search for all files containing some text (you can think of this as some hybrid of grep and find):
+$ mdfind cider
+
+# Here's how you'd search for all files matching some name:
+$ mdfind -name bozhidar.jpg
+
+# Note that this does a simple text match for the name, so you can easily expand the search by making it more generic:
+$ mdfind -name bozhidar
+
+# You can also search for multiple words in the filename:
+$ mdfind -name clojure mobi
+
+# You can easily limit the search to a particular directory like this:
+$ mdfind -onlyin ~/Downloads -name bozhidar
+
+# Another way to limit a search is by specifying the type (kind) of the files to look for/in:
+$ mdfind kind:image -name bozhidar
+
+# You can also do some fancier searches by matching for some specific macOS file metadata. The example bellow is searching for all files and folders named exactly 'Clojure':
+$ mdfind "kMDItemFSName = Clojure"
+
+# manpage
+# Returns all files with any metadata attribute value matching the string "image":
+$ mdfind image
+
+# Return all files that contain "Len Deighton" in the kMDItemAuthor metadata attribute:
+$ mdfind "kMDItemAuthor = '*Len Deighton*'"
+
+# Return all files with any metadata attribute value matching the string "skateboard". The find continues to run after gathering the initial results, providing a count of the number of files that match the query.
+$ mdfind -live skateboard
+
+# Return all Microsoft.Word document files:
+$ mdfind "kMDItemContentType = 'com.microsoft.word.doc'"
+
+# Return files where the composer name includes 'Eno' (non case sensitive search):
+$ mdfind 'kMDItemComposer = "*ENO*"c'
+
+# Return all image files matching the words 'maude' and 'paris':
+$ mdfind "kind:images maude paris"
+
+# Return all files with the filename 'readme.txt':
+$ mdfind -name readme.txt
+
+# Count the number of files with the filename 'readme.txt':
+$ mdfind -name readme.txt -count
+
+# Return all the files that have been tagged as 'Green':
+$ mdfind "kMDItemUserTags = Green"
+
+# Return all the documents created with any version of Pixelmator:
+$ mdfind "kMDItemCreator = Pixelmator*"
+
+# Return all image files last edited yesterday:
+$ mdfind "kind:image date:yesterday"
+
+# Return all files in the users home folder (~) that have been modified in the last 3 days:
+$ mdfind -onlyin ~ 'kMDItemFSContentChangeDate >= $time.today(-3)'
