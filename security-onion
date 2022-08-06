@@ -1,0 +1,72 @@
+#########################################################
+# General Maintenance
+#########################################################
+# All Scripts
+/usr/sbin/so*
+
+# Check Status of All Services
+so-status
+
+#Start/Stop/Restart Individual Service
+so-<service>-<verb>
+
+#Start/Stop/Restart Suricata
+so-suricata-<verb>
+
+#Start/Stop/Restart Zeek
+so-zeek-<verb>
+
+#Start/Stop/Restart Elasticsearch
+so-elasticsearch-<verb>
+
+#Add SOC User (Manager)
+so-user-add
+
+#List SOC users (Manager)
+so-user list
+
+#Disable SOC user (Manager)
+so-user-disable EMAIL@DOMAIN
+
+#Update Rules (Manager)
+so-rule-update
+
+#Check Redis Queue Length (Manager)
+so-redis-count
+
+# Add Firewall Rules (Analyst, Beats, Syslog, etc.)
+so-allow
+
+# Advanced Firewall Control
+so-firewall
+
+#Update Security Onion components (*not* OS)
+soup
+
+#########################################################
+# Salt Commands (from Manager)
+#########################################################
+
+# Verify Nodes are Up
+salt \* test.ping
+
+# Execute Command on all Nodes
+salt \* cmd.run '<command>'
+
+# Sync all Nodes
+salt \* state.highstate
+
+# Check service status on all nodes
+salt \* so.status
+
+#########################################################
+# Port/Protocols/Services (Distributed Deployment)
+#########################################################
+# 22/tcp (node/Manager)
+SSH access from node(s) to Manager
+
+# 4505-4506/tcp (Manager)
+Salt communication from node(s) to Manager
+
+# 443/tcp (Manager)
+Security Onion Console (SOC) web interface
