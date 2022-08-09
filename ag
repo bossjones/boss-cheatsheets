@@ -1,3 +1,60 @@
+# Find files containing "foo", and print the line matches in context:
+ag foo
+
+# Find files containing "foo" in a specific directory:
+ag foo path/to/directory
+
+# Find files containing "foo", but only list the filenames:
+ag -l foo
+
+# Find files containing "FOO" case-insensitively, and print only the match, rather than the whole line:
+ag -i -o FOO
+
+# Find "foo" in files with a name matching "bar":
+ag foo -G bar
+
+# Find files whose contents match a regular expression:
+ag '^ba(r|z)$'
+
+# Find files with a name matching "foo":
+ag -g foo
+
+# To see a list of all supported file types, use the following command.
+ag  --list-file-types
+
+#This example shows how to recursively search for all scripts that contain the word "root" under the directory ~/bin/.
+ag root ./bin/
+
+# To print the filenames matching PATTERN and the number of matches in each file, other than the number of matching lines, use the -c switch as shown.
+ag -c root ./bin/
+
+# To match case-sensitively, add the -s flag as shown.
+ag -cs ROOT ./bin/
+ag -cs root ./bin/
+
+# To print statistics of of a search operation such as files scanned, time taken, etc., use the the --stats option.
+ag -c root --stats ./bin/
+
+# The -w flag tells ag to only match whole words similar to grep command.
+ag -w root ./bin/
+
+# You can show column numbers in results using the --column option.
+ag --column root ./bin/
+
+# You can also use ag to search through purely text files, using the -t switch and the -a switch is used to search all types of files. In addition, the -u switch enables searching though all files, including hidden files.
+ag -t root /etc/
+ag -a root /etc/
+ag -u root /etc/
+
+# Ag also supports searching through the contents of compressed files, using the -z flag.
+ag -z root wondershaper.gz
+
+# You can also enable following of symbolic links (symlinks in short) with the -f flag.
+ag -tf root /etc/ 
+
+# By default, ag searches 25 directories deep, you can set the depth of the search using the --depth switch, for example.
+ag --depth 40 -tf root /etc/
+
 # silver_searcher (ag) with multiple search expressions [AND]
 ag -l pattern1 | xargs -d '\n' ag -l pattern2 | xargs ag 'pattern1|pattern2'
 
