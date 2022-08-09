@@ -1,0 +1,50 @@
+# Make help useful on Windows
+rg --help | more
+
+# List matching files only
+rg -l NEEDLE
+
+# List matching files, including a count
+rg -c NEEDLE
+
+# Search case-insensitively
+rg -i NEEDLE
+
+# Don't print filenames, handy when you care about the match more than the file
+rg --no-filename NEEDLE
+
+# Invert matching: show lines that do not match
+rg -v NEEDLE
+
+# Search only in specified file(s)
+rg NEEDLE README.md
+
+# Sort the results (-sortr to reverse)
+rg -c --sort path|modified|accessed|created NEEDLE
+
+# Only search in *.nuspec files (can use multiple -g)
+rg -g '*.nuspec' NEEDLE
+
+# Search in everything but *.nuspec files
+rg -g '!*.nuspec' NEEDLE
+
+# Force pretty printed output even in pipes
+rg -p NEEDLE | less -R
+
+# Search for multiple patterns
+rg -e NEEDLE1 -e NEEDLE2
+
+# Search in gzip, bzip2, xz, LZ4, LZMA, Brotli and Zstd compressed files
+rg -z NEEDLE
+
+# Displays built-in available types and their corresponding globs
+rg --type-list
+
+# Search in file types cs and config
+rg -tcs -tconfig
+
+# Don;t search in file type config
+rg -Tconfig
+
+# Match against filenames rather than content
+rg --files | rg NEEDLE

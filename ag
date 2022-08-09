@@ -1,0 +1,8 @@
+# silver_searcher (ag) with multiple search expressions [AND]
+ag -l pattern1 | xargs -d '\n' ag -l pattern2 | xargs ag 'pattern1|pattern2'
+
+# silver_searcher (ag) with multiple search expressions [or]
+ag 'pattern1|pattern2'
+
+# silver_searcher (ag) with multiple search expressions [NOT]
+ag -v 'pattern'
