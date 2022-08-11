@@ -1,0 +1,10 @@
+# find markdown files on _docs folder
+fd -e md `pwd`/_docs
+
+# find file with kubernetes prefix on ~/Documents
+fd '^kubernetes*' ~/Documents
+
+# find files and execute command
+# Using fd with xargs
+# Count lines number of markdown files on current directory.
+fd -e md -d 1 | xargs wc -l
