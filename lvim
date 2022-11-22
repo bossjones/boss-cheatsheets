@@ -1,0 +1,4 @@
+# lunarvim
+# Set file type in neovim without using extension or shebang
+# SOURCE: https://www.reddit.com/r/neovim/comments/qenmz0/set_file_type_in_neovim_without_using_extension/
+:set filetype=yaml
