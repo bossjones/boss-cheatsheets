@@ -1,0 +1,2 @@
+# relaxed
+yamllint -d relaxed --no-warnings .
