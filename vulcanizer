@@ -1,15 +1,15 @@
-
+# switch between cluster es,kibana,etc
 # Display the node heap stats.
-vulcanizer heap --cluster local
+vulcanizer heap --cluster es
 
 # Display the indices of the cluster.
-vulcanizer indices --cluster local
+vulcanizer indices --cluster es
 
 # Get shard data by cluster node(s).
-vulcanizer shards --cluster local
+vulcanizer shards --cluster es
 
 # Set shard allocation on the cluster.
-vulcanizer allocation --cluster local
+vulcanizer allocation --cluster es
 
 # Display the health of the cluster.
-vulcanizer health --cluster local
+vulcanizer health --cluster es
