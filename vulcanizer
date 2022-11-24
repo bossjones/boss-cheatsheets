@@ -1,0 +1,15 @@
+
+# Display the node heap stats.
+vulcanizer heap --cluster local
+
+# Display the indices of the cluster.
+vulcanizer indices --cluster local
+
+# Get shard data by cluster node(s).
+vulcanizer shards --cluster local
+
+# Set shard allocation on the cluster.
+vulcanizer allocation --cluster local
+
+# Display the health of the cluster.
+vulcanizer health --cluster local
