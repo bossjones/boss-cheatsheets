@@ -1,0 +1,7 @@
+# imgdupes is a command line tool for checking and deleting near-duplicate images based on perceptual hash from the target directory.
+# https://github.com/knjcode/imgdupes
+
+# --ngt = use NGT for calculating Hamming distance between hash of images (default=True)
+# phash = perception hashing (using only the 8x8 DCT low-frequency values including the first term)
+# http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html
+imgdupes --recursive --delete --imgcat --noprompt --ngt <DIR> phash 4
