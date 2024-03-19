@@ -8,3 +8,25 @@ fd '^kubernetes*' ~/Documents
 # Using fd with xargs
 # Count lines number of markdown files on current directory.
 fd -e md -d 1 | xargs wc -l
+
+# Recursively find all zip archives and unpack them:
+# If there are two such files, `file1.zip` and `backup/file2.zip`, this would execute
+# `unzip file1.zip` and `unzip backup/file2.zip`. The two `unzip` processes run in parallel
+# (if the files are found fast enough).
+fd -e zip -x unzip
+
+# Find all `*.h` and `*.cpp` files and auto-format them inplace with `clang-format -i`:
+fd -e h -e cpp -x clang-format -i
+
+# Find all `test_*.py` files and open them in your favorite editor:
+fd -g 'test_*.py' -X vim
+
+# To see details like file permissions, owners, file sizes etc., you can tell `fd` to show them
+# by running `ls` for each result:
+fd … -X ls -lhd --color=always
+
+# The `-X` option is also useful when combining `fd` with [ripgrep](https://github.com/BurntSushi/ripgrep/) (`rg`) in order to search within a certain class of files, like all C++ source files:
+fd -e cpp -e cxx -e h -e hpp -X rg 'std::cout'
+
+# Convert all `*.jpg` files to `*.png` files:
+fd -e jpg -x convert {} {.}.png
